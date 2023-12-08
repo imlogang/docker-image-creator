@@ -1,0 +1,32 @@
+version: 2.1
+
+parameters:
+  docker-namespace:
+    default: "imlogang"
+    type: string
+  container-name:
+    default: << pipeline.git.branch >>
+    type: string
+
+jobs:
+  create-docker-image:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: build docker image
+          command: docker build -t << pipeline.parameters.docker-namespace >>/<< pipeline.parameters.container-name >> .
+      - run: 
+          name: login to docker
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: 
+          name: push docker image
+          command: docker push << pipeline.parameters.docker-namespace >>/<< pipeline.parameters.container-name >>
+
+workflows:
+  create-docker-image:
+    jobs:
+      - create-docker-image:
+          context: docker_stuff
