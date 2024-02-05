@@ -22,7 +22,7 @@ RUN set -x \
 ENV BISON_VERSION 3.0.5
 RUN curl -L https://ftp.gnu.org/gnu/bison/bison-$BISON_VERSION.tar.gz | tar xzvf - \
     && cd bison-$BISON_VERSION && ./configure --prefix=/usr && make all install \
-    && rm -rf bison-$BISON_VERSION && cd ..
+    && cd ..
 
 # install cmake 3.26
 ENV CMAKE_VERSION 3.26.3
