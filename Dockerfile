@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:8
 
 LABEL Description="This is a build and test environment image for CUBRID"
 
