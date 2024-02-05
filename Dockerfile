@@ -21,8 +21,8 @@ RUN set -x \
 # install bison 3 for PR #1125
 ENV BISON_VERSION 3.0.5
 RUN curl -L https://ftp.gnu.org/gnu/bison/bison-$BISON_VERSION.tar.gz | tar xzvf - \
-    && cd bison-$BISON_VERSION && ./configure --prefix=/usr && make all install \
-    && cd ..
+    && cd bison-$BISON_VERSION && ./configure --disable-dependency-tracking --prefix=/usr && make all install \
+    && rm -rf bison-$BISON_VERSION && cd ..
 
 # install cmake 3.26
 ENV CMAKE_VERSION 3.26.3
