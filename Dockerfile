@@ -11,12 +11,12 @@ RUN VERSION=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides centos-release)) 
     sed -i -e "s|^#baseurl=http://mirror.centos.org/centos/\$releasever/sclo|baseurl=https://vault.centos.org/$VERSION/sclo|g" /etc/yum.repos.d/CentOS-SCLo-scl.repo && \
     sed -i -e "s|^#baseurl=http://mirror.centos.org/centos/\$releasever/sclo|baseurl=https://vault.centos.org/$VERSION/sclo|g" /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
 
-# RUN set -x \
-#         && yum install -y --setopt=tsflags=nodocs devtoolset-8-gcc devtoolset-8-gcc-c++ devtoolset-8-make \
-#                 devtoolset-8-elfutils-libelf-devel devtoolset-8-systemtap-sdt-devel \
-#                 ncurses-devel java-1.8.0-openjdk-devel ant flex sclo-git212 wget libxslt \
-#                 rpm-build libtool libtool-ltdl autoconf automake \
-#         && yum clean all -y
+RUN set -x \
+        && yum install -y --setopt=tsflags=nodocs devtoolset-8-gcc devtoolset-8-gcc-c++ devtoolset-8-make \
+                devtoolset-8-elfutils-libelf-devel devtoolset-8-systemtap-sdt-devel \
+                ncurses-devel java-1.8.0-openjdk-devel ant flex sclo-git212 wget libxslt \
+                rpm-build libtool libtool-ltdl autoconf automake \
+        && yum clean all -y
 
 # # install bison 3 for PR #1125
 # ENV BISON_VERSION 3.0.5
