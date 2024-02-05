@@ -1,4 +1,4 @@
-FROM centos:8
+FROM centos:7
 
 LABEL Description="This is a build and test environment image for CUBRID"
 
@@ -61,7 +61,7 @@ RUN echo 'ZONE="Asia/Seoul' > /etc/sysconfig/clock
 RUN localedef -f UTF-8 -i ko_KR ko_KR.utf8
 RUN localedef -f EUC-KR -i ko_KR ko_KR.euckr
 
-COPY docker-entrypoint.sh /entrypoint.sh
+#COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 775 /entrypoint.sh
 RUN chmod 777 $WORKDIR
