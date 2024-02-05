@@ -58,8 +58,8 @@ ENV BRANCH_TESTCASES release/12.0
 # RUN echo 'ZONE="Asia/Seoul' > /etc/sysconfig/clock
 
 # install multi-language locale for unicode test
-RUN localedef -f UTF-8 -i ko_KR ko_KR.utf8
-RUN localedef -f EUC-KR -i ko_KR ko_KR.euckr
+# RUN localedef -f UTF-8 -i ko_KR ko_KR.utf8
+# RUN localedef -f EUC-KR -i ko_KR ko_KR.euckr
 
 # #COPY docker-entrypoint.sh /entrypoint.sh
 
