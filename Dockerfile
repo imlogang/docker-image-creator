@@ -18,18 +18,18 @@ RUN set -x \
                 rpm-build libtool libtool-ltdl autoconf automake \
         && yum clean all -y
 
-# # install bison 3 for PR #1125
-# ENV BISON_VERSION 3.0.5
-# RUN yum install -y make
-# RUN curl -L https://ftp.gnu.org/gnu/bison/bison-$BISON_VERSION.tar.gz | tar xzvf - \
-#     && cd bison-$BISON_VERSION && ./configure --disable-dependency-tracking --prefix=/usr && make all install \
-#     && rm -rf bison-$BISON_VERSION && cd ..
+# install bison 3 for PR #1125
+ENV BISON_VERSION 3.0.5
+RUN yum install -y make
+RUN curl -L https://ftp.gnu.org/gnu/bison/bison-$BISON_VERSION.tar.gz | tar xzvf - \
+    && cd bison-$BISON_VERSION && ./configure --disable-dependency-tracking --prefix=/usr && make all install \
+    && rm -rf bison-$BISON_VERSION && cd ..
 
-# # install cmake 3.26
-# ENV CMAKE_VERSION 3.26.3
-# RUN curl -L https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz | tar xzvf - \
-#  && yes | cp -fR cmake-$CMAKE_VERSION-linux-x86_64/* /usr \
-#  && rm -rf cmake-$CMAKE_VERSION-linux-x86_64
+# install cmake 3.26
+ENV CMAKE_VERSION 3.26.3
+RUN curl -L https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz | tar xzvf - \
+ && yes | cp -fR cmake-$CMAKE_VERSION-linux-x86_64/* /usr \
+ && rm -rf cmake-$CMAKE_VERSION-linux-x86_64
 
 # # install ninja generator
 # ENV NINJA_VERSION 1.11.1
@@ -39,7 +39,7 @@ RUN set -x \
 #     && mv build-cmake/ninja /usr/bin/ninja && cd .. \
 #     && rm -rf ninja-$NINJA_VERSION
 
-# ENV WORKDIR /home
+ENV WORKDIR /home
 # ENV JAVA_HOME /usr/lib/jvm/java
 
 # # CUBRID envronment variables
