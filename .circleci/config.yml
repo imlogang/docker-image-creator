@@ -7,7 +7,9 @@ parameters:
   container-name:
     default: << pipeline.git.branch >>
     type: string
-
+  tag:
+    default: $(date "+%m-%d-%Y")
+    type: string
 jobs:
   create-docker-image:
     docker:
@@ -17,13 +19,13 @@ jobs:
       - setup_remote_docker
       - run:
           name: build docker image
-          command: docker build -t << pipeline.parameters.docker-namespace >>/<< pipeline.parameters.container-name >> .
+          command: docker build -t << pipeline.parameters.docker-namespace >>/<< pipeline.parameters.container-name >>:<< pipeline.parameters.tag >> .
       - run: 
           name: login to docker
           command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run: 
           name: push docker image
-          command: docker push << pipeline.parameters.docker-namespace >>/<< pipeline.parameters.container-name >>
+          command: docker push << pipeline.parameters.docker-namespace >>/<< pipeline.parameters.container-name >>:<< pipeline.parameters.tag >>
 
 workflows:
   create-docker-image:
