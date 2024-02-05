@@ -1,25 +1,25 @@
 #!/bin/bash -le
 
-function run_checkout ()
-{
-  if [ ! -d $WORKDIR/cubrid-testtools ]; then
-    git clone -q --depth 1 --branch $BRANCH_TESTTOOLS https://github.com/CUBRID/cubrid-testtools $WORKDIR/cubrid-testtools
-  elif [ -d $WORKDIR/cubrid-testtools/.git ]; then
-    (cd $WORKDIR/cubrid-testtools && git clean -df)
-  else
-    echo "Cannot find .git from $WORKDIR/cubrid-testtools directory!"
-    return 1
-  fi
-  if [ ! -d $WORKDIR/cubrid-testcases ]; then
-    git clone -q --depth 1 --branch $BRANCH_TESTCASES https://github.com/CUBRID/cubrid-testcases $WORKDIR/cubrid-testcases
-  elif [ -d $WORKDIR/cubrid-testcases/.git ]; then
-    (cd $WORKDIR/cubrid-testcases && git clean -df)
-  else
-    echo "Cannot find .git from $WORKDIR/cubrid-testcases directory!"
-    return 1
-  fi
+# function run_checkout ()
+# {
+#   if [ ! -d $WORKDIR/cubrid-testtools ]; then
+#     git clone -q --depth 1 --branch $BRANCH_TESTTOOLS https://github.com/CUBRID/cubrid-testtools $WORKDIR/cubrid-testtools
+#   elif [ -d $WORKDIR/cubrid-testtools/.git ]; then
+#     (cd $WORKDIR/cubrid-testtools && git clean -df)
+#   else
+#     echo "Cannot find .git from $WORKDIR/cubrid-testtools directory!"
+#     return 1
+#   fi
+#   if [ ! -d $WORKDIR/cubrid-testcases ]; then
+#     git clone -q --depth 1 --branch $BRANCH_TESTCASES https://github.com/CUBRID/cubrid-testcases $WORKDIR/cubrid-testcases
+#   elif [ -d $WORKDIR/cubrid-testcases/.git ]; then
+#     (cd $WORKDIR/cubrid-testcases && git clean -df)
+#   else
+#     echo "Cannot find .git from $WORKDIR/cubrid-testcases directory!"
+#     return 1
+#   fi
 
-}
+# }
 
 function run_build ()
 {
