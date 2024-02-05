@@ -63,8 +63,8 @@ RUN localedef -f EUC-KR -i ko_KR ko_KR.euckr
 
 #COPY docker-entrypoint.sh /entrypoint.sh
 
-RUN chmod 775 /entrypoint.sh
+#RUN chmod 775 /entrypoint.sh
 RUN chmod 777 $WORKDIR
 WORKDIR $WORKDIR
 
-ENTRYPOINT ["scl", "enable", "devtoolset-8", "--", "/entrypoint.sh"]
+#ENTRYPOINT ["scl", "enable", "devtoolset-8", "--", "/entrypoint.sh"]
