@@ -1,7 +1,15 @@
+# vim:set ft=dockerfile:
+
+# Do not edit individual Dockerfiles manually. Instead, please make changes to the Dockerfile.template, which will be used by the build script to generate Dockerfiles.
+
+# By policy, the base image tag should be a quarterly tag unless there's a
+# specific reason to use a different one. This means January, April, July, or
+# October.
+
 FROM cimg/base:2023.07
 
-ENV PG_VER=%%VERSION_FULL%%
-ENV PG_MAJOR=%%VERSION_MAJOR%%
+ENV PG_VER=14.9
+ENV PG_MAJOR=14
 ENV POSTGRES_HOST_AUTH_METHOD=trust
 ENV PATH /usr/lib/postgresql/$PG_MAJOR/bin:$PATH
 ENV PGDATA /var/lib/postgresql/data
@@ -96,7 +104,7 @@ COPY docker-entrypoint.sh /usr/local/bin/
 # Backwards compatibility
 RUN ln -s usr/local/bin/docker-entrypoint.sh /
 
-# removed /docker-entrypoint-initdb.d/pg_cron.sh
+# removed:  /docker-entrypoint-initdb.d/pg_cron.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
 	mkdir -p /var/lib/postgresql && \
 	chown -R postgres:postgres /var/lib/postgresql && \
