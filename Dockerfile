@@ -97,7 +97,7 @@ RUN git clone --depth 1 -b "v$PGTAP_VERSION" https://github.com/theory/pgtap.git
 
 RUN mkdir /docker-entrypoint-initdb.d
 
-#COPY pg_cron.sh /docker-entrypoint-initdb.d/
+COPY pg_cron.sh /docker-entrypoint-initdb.d/
 COPY custom-postgresql.conf /etc/postgresql/custom-postgresql.conf
 COPY docker-entrypoint.sh /usr/local/bin/
 
