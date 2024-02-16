@@ -104,11 +104,11 @@ COPY docker-entrypoint.sh /usr/local/bin/
 # Backwards compatibility
 RUN ln -s usr/local/bin/docker-entrypoint.sh /
 
-# removed:  /docker-entrypoint-initdb.d/pg_cron.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
+# removed:  
+# removed: chown -R postgres:postgres /etc/postgresql &&  \
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh && /docker-entrypoint-initdb.d/pg_cron.sh && \
 	mkdir -p /var/lib/postgresql && \
 	chown -R postgres:postgres /var/lib/postgresql && \
-	chown -R postgres:postgres /etc/postgresql && \
 	chown -R postgres:postgres /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
