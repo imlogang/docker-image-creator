@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1.4
 FROM cimg/go:1.21.7
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
