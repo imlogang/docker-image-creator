@@ -1,4 +1,4 @@
-FROM cimg/go:1.21.7
+FROM --platform=linux/amd64 us-central1-docker.pkg.dev/wandb-production/hub/golang:1.21.7-bullseye
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
