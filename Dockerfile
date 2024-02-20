@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM --platform=linux/amd64 us-central1-docker.pkg.dev/wandb-production/hub/golang:1.21.7-bullseye AS base
+FROM cimg/go:1.21.7 AS base
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -54,19 +54,19 @@ RUN cd /root && \
   ln -s /root/google-cloud-sdk/bin/gcloud /usr/local/bin/gcloud && \
   ln -s /root/google-cloud-sdk/bin/docker-credential-gcloud /usr/local/bin/docker-credential-gcloud
 
-COPY --link ./make/requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt
+# COPY --link ./make/requirements.txt /tmp/requirements.txt
+# RUN pip install -r /tmp/requirements.txt
 
 # the dagger library will install this client when it's first run. By installing it
 # during the build, we save some bandwidth and guard against network interruptions
 RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=$(grep 'dagger-io==' /tmp/requirements.txt | awk -F '==' '{print $2}') sh
 
 WORKDIR /tmp/core
-COPY --link services/go.* ./services/
-COPY --link go.work* ./
-COPY --link ./services/gorilla/internal/graphql-go ./services/gorilla/internal/graphql-go
-COPY --link ./tools/binlog_reader/go.* ./tools/binlog_reader/
-COPY --link ./tools/governor/go.* ./tools/governor/
-COPY --link ./tools/wandbctl/go.* ./tools/wandbctl/
-RUN cd services && \
-  go mod download
+# COPY --link services/go.* ./services/
+# COPY --link go.work* ./
+# COPY --link ./services/gorilla/internal/graphql-go ./services/gorilla/internal/graphql-go
+# COPY --link ./tools/binlog_reader/go.* ./tools/binlog_reader/
+# COPY --link ./tools/governor/go.* ./tools/governor/
+# COPY --link ./tools/wandbctl/go.* ./tools/wandbctl/
+# RUN cd services && \
+#   go mod download
