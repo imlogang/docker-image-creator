@@ -1,0 +1,11 @@
+[General]
+AuthKey = $AUTH_KEY
+Debug = false
+Description = 'In Too Deep'
+Map = '/levels/gridmap_v2/info.json'
+MaxCars = 1
+MaxPlayers = 10
+Name = 'In Too Deep'
+Port = 30814
+Private = false
+ResourceFolder = 'Resources'
