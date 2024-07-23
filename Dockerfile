@@ -1,5 +1,4 @@
-FROM cimg/gcp:2023.09.1
-RUN sudo apt-get update && sudo apt-get upgrade -y
-RUN	HELM_VER=3.11.1 && \
-	curl -sSL "https://get.helm.sh/helm-v${HELM_VER}-linux-amd64.tar.gz" | sudo tar -xz --strip-components=1 -C /usr/local/bin linux-amd64/helm && \
-	helm version
+FROM ubuntu:22.04
+RUN wget https://github.com/BeamMP/BeamMP-Server/releases/download/v3.4.1/BeamMP-Server.ubuntu.20.04.x86_64 \
+	&& chmod +x ./BeamMP-Server.ubuntu.20.04.x86_64 \
+	&& ./BeamMP-Server.ubuntu.20.04.x86_64
