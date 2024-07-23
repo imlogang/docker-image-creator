@@ -1,5 +1,5 @@
 [General]
-AuthKey = $AUTH_KEY
+AuthKey = "${AUTH_KEY}"
 Debug = false
 Description = 'In Too Deep'
 Map = '/levels/gridmap_v2/info.json'
