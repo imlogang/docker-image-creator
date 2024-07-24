@@ -1,5 +1,6 @@
 FROM ubuntu:22.04
 USER root
+ENV AUTH_KEY
 WORKDIR /app
 COPY ServerConfig.toml /app/ServerConfig.toml
 RUN  apt-get update \
