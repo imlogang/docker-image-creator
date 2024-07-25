@@ -1,7 +1,6 @@
 FROM ubuntu:22.04
 USER root
 WORKDIR /app
-COPY ServerConfig.toml /app/ServerConfig.toml
 RUN  apt-get update \
   && apt-get install -y wget liblua5.3-0 \
   && apt-get upgrade \
